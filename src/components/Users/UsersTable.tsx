@@ -30,6 +30,7 @@ const UsersTable: React.FC = () => {
     pagination,
     updateFilters,
     updatePagination,
+    fetchUsers,
   } = useUsers();
 
   const columns = [
@@ -66,6 +67,11 @@ const UsersTable: React.FC = () => {
 
   const handleRowClick = (userId: string) => {
     navigate(`/users/${userId}`);
+  };
+
+  const handleStatusChange = () => {
+    // Refresh the users list after status change
+    fetchUsers();
   };
 
   return (
@@ -134,7 +140,11 @@ const UsersTable: React.FC = () => {
                     className="table-cell actions-cell"
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <ActionMenu userId={user.id} />
+                    <ActionMenu
+                      userId={user.id}
+                      currentStatus={user.status}
+                      onStatusChange={handleStatusChange}
+                    />
                   </td>
                 </tr>
               ))
