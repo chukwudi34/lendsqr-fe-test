@@ -1,7 +1,7 @@
 services:
   - type: web
     name: chukwudi34-lendsqr-fe-test
-    env: node
+    env: static
     plan: free
     buildCommand: npm ci && npm run build
     staticPublishPath: ./dist
