@@ -11,6 +11,20 @@ body {
   background-color: $background;
   color: $text-dark;
   line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  display: block !important; // Override Vite's default flex layout
+  place-items: initial !important; // Override Vite's default centering
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  max-width: none !important; // Override any max-width constraints
+  margin: 0 !important; // Override any centering margins
+  padding: 0 !important; // Override any default padding
 }
 
 button {

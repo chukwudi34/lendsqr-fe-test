@@ -27,22 +27,15 @@
     gap: $spacing-md;
   }
 
-  // Small screens (mobile landscape) - 2 cards per row
-  @media (max-width: 768px) and (min-width: 481px) {
-    grid-template-columns: repeat(2, 1fr);
+  // Small screens (mobile) - stack cards vertically
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
     gap: $spacing-md;
-    margin-bottom: $spacing-xl;
-  }
-
-  // Extra small screens (mobile portrait) - 2 cards per row still
-  @media (max-width: 480px) {
-    grid-template-columns: repeat(2, 1fr);
-    gap: $spacing-sm;
     margin-bottom: $spacing-lg;
   }
 
-  // Very small screens - 1 card per row
-  @media (max-width: 360px) {
+  // Extra small screens - maintain single column with smaller gaps
+  @media (max-width: 480px) {
     grid-template-columns: 1fr;
     gap: $spacing-sm;
     margin-bottom: $spacing-md;

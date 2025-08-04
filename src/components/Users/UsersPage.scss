@@ -6,6 +6,14 @@
   min-width: 0;
   overflow: visible;
   position: relative;
+  box-sizing: border-box;
+
+  // Ensure proper mobile containment
+  @media (max-width: 768px) {
+    overflow-x: hidden; // Prevent page-level horizontal scrolling
+    width: 100%;
+    max-width: 100%;
+  }
 
   .page-title {
     font-size: 24px;

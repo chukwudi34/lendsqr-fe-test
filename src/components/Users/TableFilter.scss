@@ -144,4 +144,50 @@
       }
     }
   }
+
+  // Mobile responsiveness
+  @media (max-width: 768px) {
+    .filter-dropdown {
+      width: 250px;
+      padding: 16px;
+
+      // Ensure dropdown stays within viewport
+      &.align-left {
+        left: -50px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .filter-dropdown {
+      width: 220px;
+      padding: 12px;
+
+      .filter-form {
+        .form-group {
+          margin-bottom: 12px;
+
+          label {
+            font-size: 12px;
+            margin-bottom: 4px;
+          }
+
+          input,
+          select {
+            padding: 8px 10px;
+            font-size: 12px;
+          }
+        }
+
+        .filter-actions {
+          gap: 8px;
+
+          .filter-btn {
+            padding: 8px 12px;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
 }

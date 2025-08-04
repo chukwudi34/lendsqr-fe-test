@@ -16,6 +16,28 @@
     width: 100%;
     max-width: 100%;
     position: relative;
+
+    // Ensure scrollbar is visible and styled on all devices
+    scrollbar-width: thin;
+    scrollbar-color: rgba(33, 63, 125, 0.3) transparent;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(33, 63, 125, 0.1);
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(33, 63, 125, 0.3);
+      border-radius: 4px;
+
+      &:hover {
+        background: rgba(33, 63, 125, 0.5);
+      }
+    }
   }
 
   .users-table {
@@ -90,47 +112,31 @@
   }
 
   @media (max-width: 1024px) {
-    .table-wrapper {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(33, 63, 125, 0.3) transparent;
-
-      &::-webkit-scrollbar {
-        height: 8px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: rgba(33, 63, 125, 0.1);
-        border-radius: 4px;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background: rgba(33, 63, 125, 0.3);
-        border-radius: 4px;
-
-        &:hover {
-          background: rgba(33, 63, 125, 0.5);
-        }
-      }
-    }
-
     .users-table {
       min-width: 900px;
     }
   }
 
   @media (max-width: 768px) {
-    margin: 0 -#{$spacing-md};
-    border-radius: 0;
-    width: calc(100% + #{$spacing-md * 2});
+    // Keep table container within viewport bounds
+    margin: 0;
+    border-radius: $border-radius;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 
     .table-wrapper {
-      border-radius: 0;
+      border-radius: $border-radius;
+      width: 100%;
+      max-width: 100%;
+      // Enable horizontal scrolling within the container
+      overflow-x: auto;
+      overflow-y: visible;
+      -webkit-overflow-scrolling: touch;
     }
 
     .users-table {
-      min-width: 800px;
+      min-width: 800px; // Table content wider than container
       font-size: 13px;
 
       .table-header,
@@ -146,11 +152,20 @@
   }
 
   @media (max-width: 480px) {
-    margin: 0 -#{$spacing-sm};
-    width: calc(100% + #{$spacing-sm * 2});
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+
+    .table-wrapper {
+      width: 100%;
+      max-width: 100%;
+      // Maintain horizontal scrolling within container
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
 
     .users-table {
-      min-width: 700px;
+      min-width: 700px; // Table content wider than container
 
       .table-header,
       .table-cell {
