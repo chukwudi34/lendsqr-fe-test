@@ -1,0 +1,41 @@
+@import "./variables.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family;
+  background-color: $background;
+  color: $text-dark;
+  line-height: 1.5;
+}
+
+button {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// Ensure input fields have proper styling
+input,
+textarea,
+select {
+  font-family: inherit;
+  background-color: $white;
+  color: $text-dark;
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px $white inset !important;
+    -webkit-text-fill-color: $text-dark !important;
+    background-color: $white !important;
+  }
+}

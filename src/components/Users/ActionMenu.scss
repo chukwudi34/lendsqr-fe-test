@@ -1,0 +1,73 @@
+@import '../../styles/variables.scss';
+
+.action-menu {
+  position: relative;
+  display: inline-block;
+
+  .action-trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(84, 95, 125, 0.1);
+    }
+
+    svg {
+      opacity: 0.6;
+    }
+  }
+
+  .action-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: $white;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.04);
+    min-width: 180px;
+    z-index: 1000;
+    overflow: hidden;
+
+    .action-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      padding: $spacing-md $spacing-lg;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      font-size: $font-size-sm;
+      color: $text-light;
+
+      &:hover {
+        background-color: rgba(84, 95, 125, 0.05);
+      }
+
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba(84, 95, 125, 0.1);
+      }
+
+      .action-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .action-label {
+        flex: 1;
+      }
+    }
+  }
+}
