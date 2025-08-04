@@ -7,10 +7,7 @@ export default defineConfig({
   preview: {
     host: '0.0.0.0',
     port: Number(process.env.PORT) || 4173,
-    allowedHosts: [
-      'chukwudi-nwafor-lendsqr-fe-test.onrender.com', // Render domain
-      'localhost'
-      // add custom domains here if you plan to connect one later
-    ]
+    allowedHosts: ['*'] // allow all during preview
   }
+
 })
