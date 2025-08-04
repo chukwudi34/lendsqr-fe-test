@@ -8,7 +8,7 @@ interface TableFilterProps {
   options?: string[];
 }
 
-interface FilterFormData {
+interface FilterFormData extends Record<string, string> {
   organization: string;
   username: string;
   email: string;
@@ -70,7 +70,7 @@ const TableFilter: React.FC<TableFilterProps> = ({
   };
 
   const handleFilterSubmit = () => {
-    onFilter(formData as Record<string, string>);
+    onFilter(formData);
     setIsOpen(false);
   };
 
@@ -84,7 +84,7 @@ const TableFilter: React.FC<TableFilterProps> = ({
       status: "",
     };
     setFormData(resetData);
-    onFilter(resetData as Record<string, string>);
+    onFilter(resetData);
     setIsOpen(false);
   };
 

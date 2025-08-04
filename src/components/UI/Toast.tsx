@@ -21,6 +21,13 @@ const Toast: React.FC<ToastProps> = ({
   const [isVisible, setIsVisible] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
 
+  const handleClose = useCallback(() => {
+    setIsExiting(true);
+    setTimeout(() => {
+      onClose(id);
+    }, 300); // Match animation duration
+  }, [id, onClose]);
+
   useEffect(() => {
     // Trigger entrance animation
     const timer = setTimeout(() => setIsVisible(true), 10);
@@ -35,13 +42,6 @@ const Toast: React.FC<ToastProps> = ({
       return () => clearTimeout(timer);
     }
   }, [duration, handleClose]);
-
-  const handleClose = useCallback(() => {
-    setIsExiting(true);
-    setTimeout(() => {
-      onClose(id);
-    }, 300); // Match animation duration
-  }, [id, onClose]);
 
   const getIcon = () => {
     switch (type) {
