@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import './Toast.scss';
+import React, { useEffect, useState, useCallback } from "react";
+import "./Toast.scss";
 
 export interface ToastProps {
   id: string;
-  type: 'success' | 'error' | 'warning' | 'info';
+  type: "success" | "error" | "warning" | "info";
   title: string;
   message?: string;
   duration?: number;
@@ -34,18 +34,18 @@ const Toast: React.FC<ToastProps> = ({
       }, duration);
       return () => clearTimeout(timer);
     }
-  }, [duration]);
+  }, [duration, handleClose]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsExiting(true);
     setTimeout(() => {
       onClose(id);
     }, 300); // Match animation duration
-  };
+  }, [id, onClose]);
 
   const getIcon = () => {
     switch (type) {
-      case 'success':
+      case "success":
         return (
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path
@@ -54,7 +54,7 @@ const Toast: React.FC<ToastProps> = ({
             />
           </svg>
         );
-      case 'error':
+      case "error":
         return (
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path
@@ -63,7 +63,7 @@ const Toast: React.FC<ToastProps> = ({
             />
           </svg>
         );
-      case 'warning':
+      case "warning":
         return (
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path
@@ -72,7 +72,7 @@ const Toast: React.FC<ToastProps> = ({
             />
           </svg>
         );
-      case 'info':
+      case "info":
         return (
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path
@@ -88,8 +88,8 @@ const Toast: React.FC<ToastProps> = ({
 
   return (
     <div
-      className={`toast toast-${type} ${isVisible ? 'toast-visible' : ''} ${
-        isExiting ? 'toast-exiting' : ''
+      className={`toast toast-${type} ${isVisible ? "toast-visible" : ""} ${
+        isExiting ? "toast-exiting" : ""
       }`}
     >
       <div className="toast-icon">{getIcon()}</div>

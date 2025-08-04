@@ -25,16 +25,16 @@ export const useStats = (autoFetch: boolean = true) => {
   const fetchStats = useCallback(async (): Promise<void> => {
     try {
       setStatsState(prev => ({ ...prev, isLoading: true, error: null }));
-      
+
       const response = await usersAPI.getUserStats();
-      
+
       setStatsState({
         stats: response,
         isLoading: false,
         error: null,
       });
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Failed to fetch statistics';
+    } catch (error: unknown) {
+      const errorMessage = (error as Error)?.message || 'Failed to fetch statistics';
       setStatsState(prev => ({
         ...prev,
         isLoading: false,

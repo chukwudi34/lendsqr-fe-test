@@ -65,8 +65,8 @@ export const useUsers = (options: UseUsersOptions = {}) => {
         isLoading: false,
         error: null,
       });
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Failed to fetch users';
+    } catch (error: unknown) {
+      const errorMessage = (error as Error)?.message || 'Failed to fetch users';
       setUsersState(prev => ({
         ...prev,
         isLoading: false,
@@ -145,8 +145,8 @@ export const useUser = (userId?: string) => {
       // Cache the user data
       userStorage.cacheUser(userData);
       userStorage.saveLastViewedUser(id);
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Failed to fetch user';
+    } catch (error: unknown) {
+      const errorMessage = (error as Error)?.message || 'Failed to fetch user';
       setError(errorMessage);
     } finally {
       setIsLoading(false);
@@ -160,8 +160,8 @@ export const useUser = (userId?: string) => {
       setError(null);
       const updatedUser = await usersAPI.updateUserStatus(id, status);
       setUser(updatedUser);
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Failed to update user status';
+    } catch (error: unknown) {
+      const errorMessage = (error as Error)?.message || 'Failed to update user status';
       setError(errorMessage);
       throw error;
     } finally {
@@ -176,8 +176,8 @@ export const useUser = (userId?: string) => {
       setError(null);
       const updatedUser = await usersAPI.blacklistUser(id);
       setUser(updatedUser);
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Failed to blacklist user';
+    } catch (error: unknown) {
+      const errorMessage = (error as Error)?.message || 'Failed to blacklist user';
       setError(errorMessage);
       throw error;
     } finally {
@@ -192,8 +192,8 @@ export const useUser = (userId?: string) => {
       setError(null);
       const updatedUser = await usersAPI.activateUser(id);
       setUser(updatedUser);
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Failed to activate user';
+    } catch (error: unknown) {
+      const errorMessage = (error as Error)?.message || 'Failed to activate user';
       setError(errorMessage);
       throw error;
     } finally {

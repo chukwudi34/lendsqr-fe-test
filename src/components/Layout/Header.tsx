@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../lib/hooks/useAuth";
-import { useToastContext } from "../../lib/contexts/ToastContext";
+import { useToastContext } from "../../lib/hooks/useToastContext";
 import "./Header.scss";
 
 interface HeaderProps {

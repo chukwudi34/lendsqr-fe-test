@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../lib/hooks/useAuth";
-import { useToastContext } from "../../lib/contexts/ToastContext";
+import { useToastContext } from "../../lib/hooks/useToastContext";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import "./LoginPage.scss";
 
@@ -30,10 +30,9 @@ const LoginPage: React.FC = () => {
       setTimeout(() => {
         navigate("/dashboard");
       }, 1000);
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Show error notification
-      const errorMessage =
-        error?.response?.data?.message || error?.message || "Login failed";
+      const errorMessage = (error as Error)?.message || "Login failed";
       showError("Login Failed", errorMessage, 5000);
       console.error("Login failed:", error);
     }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useUser } from "../../lib/hooks/useUsers";
-import type { User } from "../../lib/api/users";
+// import type { User } from "../../lib/api/users"; // Currently unused
 import "./UserDetailsPage.scss";
 
 const UserDetailsPage: React.FC = () => {

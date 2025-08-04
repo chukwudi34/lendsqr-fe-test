@@ -1,5 +1,20 @@
 import type { User } from '../api/users';
 
+// Types for storage data
+interface UserFilters {
+  organization?: string;
+  username?: string;
+  email?: string;
+  date?: string;
+  phoneNumber?: string;
+  status?: string;
+}
+
+interface UserPagination {
+  page: number;
+  limit: number;
+}
+
 const STORAGE_KEYS = {
   USERS: 'lendsqr_users',
   USER_FILTERS: 'lendsqr_user_filters',
@@ -69,20 +84,20 @@ export const userStorage = {
   },
 
   // Store user filters
-  saveUserFilters: (filters: Record<string, any>): void => {
+  saveUserFilters: (filters: UserFilters): void => {
     storage.set(STORAGE_KEYS.USER_FILTERS, filters);
   },
 
-  getUserFilters: (): Record<string, any> => {
+  getUserFilters: (): UserFilters => {
     return storage.get(STORAGE_KEYS.USER_FILTERS, {});
   },
 
   // Store pagination settings
-  saveUserPagination: (pagination: Record<string, any>): void => {
+  saveUserPagination: (pagination: UserPagination): void => {
     storage.set(STORAGE_KEYS.USER_PAGINATION, pagination);
   },
 
-  getUserPagination: (): Record<string, any> => {
+  getUserPagination: (): UserPagination => {
     return storage.get(STORAGE_KEYS.USER_PAGINATION, { page: 1, limit: 10 });
   },
 
@@ -168,7 +183,7 @@ export const userStorage = {
 export { storage };
 
 // Storage event listener for cross-tab synchronization
-export const setupStorageSync = (callback: (key: string, newValue: any) => void) => {
+export const setupStorageSync = (callback: (key: string, newValue: unknown) => void) => {
   const handleStorageChange = (event: StorageEvent) => {
     if (event.key && event.newValue) {
       try {

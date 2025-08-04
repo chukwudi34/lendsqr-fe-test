@@ -71,8 +71,8 @@ export const useAuth = () => {
         isLoading: false,
         error: null,
       });
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Login failed';
+    } catch (error: unknown) {
+      const errorMessage = (error as Error)?.message || 'Login failed';
       setAuthState(prev => ({
         ...prev,
         isLoading: false,
@@ -127,8 +127,8 @@ export const useAuth = () => {
         user,
         isLoading: false,
       }));
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Failed to get user';
+    } catch (error: unknown) {
+      const errorMessage = (error as Error)?.message || 'Failed to get user';
       setAuthState(prev => ({
         ...prev,
         isLoading: false,

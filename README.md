@@ -4,7 +4,7 @@ A comprehensive React TypeScript application built for Lendsqr's frontend engine
 
 ## 🚀 Live Demo
 
-**Deployed Application:** [https://your-name-lendsqr-fe-test.vercel.app](https://your-name-lendsqr-fe-test.vercel.app)
+**Deployed Application:** [https://chukwudi-nwafor-lendsqr-fe-test.onrender.com](https://chukwudi-nwafor-lendsqr-fe-test.onrender.com/)
 
 ## 📋 Project Overview
 
@@ -314,7 +314,6 @@ For testing the application, use these demo credentials:
 **Your Name**
 
 - GitHub: [@chukwudi34](https://github.com/your-username)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/your-profile)
 - Email: chukwudinwafor@gmail.com
 
 ## 📄 License

@@ -1,17 +1,7 @@
-import React, { createContext, useContext, type ReactNode } from "react";
+import React, { type ReactNode } from "react";
 import { useToast } from "../hooks/useToast";
 import ToastContainer from "../../components/UI/ToastContainer";
-
-interface ToastContextType {
-  showSuccess: (title: string, message?: string, duration?: number) => string;
-  showError: (title: string, message?: string, duration?: number) => string;
-  showWarning: (title: string, message?: string, duration?: number) => string;
-  showInfo: (title: string, message?: string, duration?: number) => string;
-  removeToast: (id: string) => void;
-  clearAllToasts: () => void;
-}
-
-const ToastContext = createContext<ToastContextType | undefined>(undefined);
+import { ToastContext, type ToastContextType } from "./ToastContextDefinition";
 
 interface ToastProviderProps {
   children: ReactNode;
@@ -45,10 +35,4 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   );
 };
 
-export const useToastContext = (): ToastContextType => {
-  const context = useContext(ToastContext);
-  if (context === undefined) {
-    throw new Error("useToastContext must be used within a ToastProvider");
-  }
-  return context;
-};
+// Note: useToastContext hook is now in a separate file for better React Fast Refresh support
