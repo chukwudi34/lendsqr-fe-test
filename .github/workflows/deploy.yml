@@ -61,13 +61,14 @@ jobs:
       - name: Build project
         run: npm run build
 
+      # This triggers a new Render deploy
       - name: Deploy to Render
         uses: johnbeynon/render-deploy-action@v0.0.8
         with:
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
           api-key: ${{ secrets.RENDER_API_KEY }}
 
-      # Alternative deployment method using curl if the action fails
+      # Optional backup if above fails
       - name: Alternative Render Deploy (if main deploy fails)
         if: failure()
         run: |
