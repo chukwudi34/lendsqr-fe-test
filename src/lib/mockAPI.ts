@@ -168,7 +168,23 @@ export const mockUsersAPI = {
 
   getUserStats: async () => {
     await delay();
-    return mockUsersData.stats;
+
+    // Calculate stats dynamically from current user data
+    const users = mockUsersData.users as User[];
+    const totalUsers = users.length;
+    const activeUsers = users.filter(user => user.status === 'Active').length;
+    const usersWithLoans = users.filter(user =>
+      user.educationAndEmployment?.loanRepayment &&
+      user.educationAndEmployment.loanRepayment !== '₦0'
+    ).length;
+    const usersWithSavings = Math.floor(totalUsers * 0.7); // Assume 70% have savings
+
+    return {
+      totalUsers,
+      activeUsers,
+      usersWithLoans,
+      usersWithSavings,
+    };
   },
 };
 

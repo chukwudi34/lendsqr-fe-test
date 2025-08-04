@@ -6,6 +6,7 @@ import "./UsersPage.scss";
 
 const UsersPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [statsRefreshTrigger, setStatsRefreshTrigger] = useState(0);
 
   useEffect(() => {
     // Show loading for 5 seconds
@@ -15,6 +16,10 @@ const UsersPage: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  const handleStatsRefresh = () => {
+    setStatsRefreshTrigger((prev) => prev + 1);
+  };
 
   return (
     <div className={`users-page ${isLoading ? "loading" : ""}`}>
@@ -28,8 +33,8 @@ const UsersPage: React.FC = () => {
       )}
 
       <h1 className="page-title">Users</h1>
-      <StatsCards />
-      <UsersTable />
+      <StatsCards refreshTrigger={statsRefreshTrigger} />
+      <UsersTable onStatsRefresh={handleStatsRefresh} />
     </div>
   );
 };

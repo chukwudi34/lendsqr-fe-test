@@ -126,4 +126,21 @@
       }
     }
   }
+
+  // Color-specific styles for different stat cards
+  &.pink {
+    border-left: 3px solid #df18ff;
+  }
+
+  &.purple {
+    border-left: 3px solid #5718ff;
+  }
+
+  &.orange {
+    border-left: 3px solid #f55f44;
+  }
+
+  &.red {
+    border-left: 3px solid #e4033b;
+  }
 }

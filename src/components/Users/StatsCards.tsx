@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStats } from "../../lib/hooks/useStats";
 import "./StatsCards.scss";
 
-const StatsCards: React.FC = () => {
-  const { stats: apiStats, isLoading, error } = useStats();
+interface StatsCardsProps {
+  refreshTrigger?: number;
+}
+
+const StatsCards: React.FC<StatsCardsProps> = ({ refreshTrigger }) => {
+  const { stats: apiStats, isLoading, error, fetchStats } = useStats();
+
+  // Refresh stats when refreshTrigger changes
+  useEffect(() => {
+    if (refreshTrigger && refreshTrigger > 0) {
+      fetchStats();
+    }
+  }, [refreshTrigger, fetchStats]);
 
   const statsConfig = [
     {

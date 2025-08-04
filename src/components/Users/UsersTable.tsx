@@ -17,7 +17,11 @@ export interface User {
   status: "Active" | "Inactive" | "Pending" | "Blacklisted";
 }
 
-const UsersTable: React.FC = () => {
+interface UsersTableProps {
+  onStatsRefresh?: () => void;
+}
+
+const UsersTable: React.FC<UsersTableProps> = ({ onStatsRefresh }) => {
   const navigate = useNavigate();
   const {
     users,
@@ -72,6 +76,8 @@ const UsersTable: React.FC = () => {
   const handleStatusChange = () => {
     // Refresh the users list after status change
     fetchUsers();
+    // Refresh the stats cards
+    onStatsRefresh?.();
   };
 
   return (
