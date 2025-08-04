@@ -314,7 +314,8 @@ For testing the application, use these demo credentials:
 **Your Name**
 
 - GitHub: [@chukwudi34](https://github.com/your-username)
-- Email: chukwudinwafor@gmail.com
+- Live URL :[ https://chukwudi-nwafor-lendsqr-fe-test.onrender.com/ ](https://chukwudi-nwafor-lendsqr-fe-test.onrender.com/)
+- Email: chukwudinwafor34@gmail.com
 
 ## 📄 License
 
