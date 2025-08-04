@@ -182,7 +182,7 @@ src/
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
+- Node.js (v20 or higher)
 - npm or yarn package manager
 - Modern web browser
 
@@ -191,7 +191,7 @@ src/
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/your-username/lendsqr-fe-test.git
+git clone https://github.com/chukwudi34/lendsqr-fe-test.git
 cd lendsqr-fe-test
 ```
 
@@ -234,8 +234,8 @@ yarn preview
 
 For testing the application, use these demo credentials:
 
-- **Email**: `demo@lendsqr.com`
-- **Password**: `password123`
+- **Email**: admin@lendsqr.com
+- **Password**: password123
 
 ## 📊 API Integration
 
@@ -313,9 +313,9 @@ For testing the application, use these demo credentials:
 
 **Your Name**
 
-- GitHub: [@your-username](https://github.com/your-username)
+- GitHub: [@chukwudi34](https://github.com/your-username)
 - LinkedIn: [Your LinkedIn](https://linkedin.com/in/your-profile)
-- Email: your.email@example.com
+- Email: chukwudinwafor@gmail.com
 
 ## 📄 License
 
