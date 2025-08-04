@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { ToastProps } from '../../components/UI/Toast';
+import type { ToastProps } from '../../components/UI/Toast';
 
 interface ToastOptions {
   type: 'success' | 'error' | 'warning' | 'info';
@@ -16,7 +16,7 @@ export const useToast = () => {
     const toast: ToastProps = {
       id,
       ...options,
-      onClose: () => {}, // Will be set by ToastContainer
+      onClose: () => { }, // Will be set by ToastContainer
     };
 
     setToasts(prev => [...prev, toast]);

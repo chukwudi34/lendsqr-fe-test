@@ -1,4 +1,4 @@
-import React from "react";
+// React import removed as it's not needed in React 17+
 import {
   BrowserRouter as Router,
   Routes,

@@ -1,6 +1,6 @@
-import React from 'react';
-import Toast, { ToastProps } from './Toast';
-import './Toast.scss';
+import React from "react";
+import Toast, { type ToastProps } from "./Toast";
+import "./Toast.scss";
 
 interface ToastContainerProps {
   toasts: ToastProps[];
@@ -16,11 +16,7 @@ const ToastContainer: React.FC<ToastContainerProps> = ({
   return (
     <div className="toast-container">
       {toasts.map((toast) => (
-        <Toast
-          key={toast.id}
-          {...toast}
-          onClose={onRemoveToast}
-        />
+        <Toast key={toast.id} {...toast} onClose={onRemoveToast} />
       ))}
     </div>
   );

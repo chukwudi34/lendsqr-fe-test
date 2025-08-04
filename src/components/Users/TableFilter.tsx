@@ -20,8 +20,8 @@ interface FilterFormData {
 const TableFilter: React.FC<TableFilterProps> = ({
   columnKey,
   onFilter,
-  filterType,
-  options,
+  // filterType, // Unused in current implementation
+  // options, // Unused in current implementation
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState<FilterFormData>({
@@ -70,7 +70,7 @@ const TableFilter: React.FC<TableFilterProps> = ({
   };
 
   const handleFilterSubmit = () => {
-    onFilter(formData);
+    onFilter(formData as Record<string, string>);
     setIsOpen(false);
   };
 
@@ -84,7 +84,7 @@ const TableFilter: React.FC<TableFilterProps> = ({
       status: "",
     };
     setFormData(resetData);
-    onFilter(resetData);
+    onFilter(resetData as Record<string, string>);
     setIsOpen(false);
   };
 

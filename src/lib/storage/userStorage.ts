@@ -1,4 +1,4 @@
-import { User } from '../api/users';
+import type { User } from '../api/users';
 
 const STORAGE_KEYS = {
   USERS: 'lendsqr_users',
@@ -56,7 +56,7 @@ export const userStorage = {
   },
 
   getCachedUsers: (maxAge: number = 5 * 60 * 1000): User[] | null => {
-    const cached = storage.get(STORAGE_KEYS.USERS, null);
+    const cached = storage.get<{ users: User[]; timestamp: number } | null>(STORAGE_KEYS.USERS, null);
     if (!cached) return null;
 
     const isExpired = Date.now() - cached.timestamp > maxAge;
@@ -107,7 +107,7 @@ export const userStorage = {
 
   getCachedUser: (userId: string, maxAge: number = 10 * 60 * 1000): User | null => {
     const userKey = `user_${userId}`;
-    const cached = storage.get(userKey, null);
+    const cached = storage.get<{ user: User; timestamp: number } | null>(userKey, null);
     if (!cached) return null;
 
     const isExpired = Date.now() - cached.timestamp > maxAge;
@@ -124,7 +124,7 @@ export const userStorage = {
     Object.values(STORAGE_KEYS).forEach(key => {
       storage.remove(key);
     });
-    
+
     // Also clear individual user caches
     const keys = Object.keys(localStorage);
     keys.forEach(key => {
@@ -145,12 +145,12 @@ export const userStorage = {
     try {
       const keys = Object.keys(localStorage);
       info.totalKeys = keys.length;
-      
+
       keys.forEach(key => {
         if (key.startsWith('lendsqr_') || key.startsWith('user_')) {
           info.userKeys++;
         }
-        
+
         const value = localStorage.getItem(key);
         if (value) {
           info.estimatedSize += key.length + value.length;
@@ -181,7 +181,7 @@ export const setupStorageSync = (callback: (key: string, newValue: any) => void)
   };
 
   window.addEventListener('storage', handleStorageChange);
-  
+
   return () => {
     window.removeEventListener('storage', handleStorageChange);
   };

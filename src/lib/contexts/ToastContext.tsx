@@ -1,6 +1,6 @@
-import React, { createContext, useContext, ReactNode } from 'react';
-import { useToast } from '../hooks/useToast';
-import ToastContainer from '../../components/UI/ToastContainer';
+import React, { createContext, useContext, type ReactNode } from "react";
+import { useToast } from "../hooks/useToast";
+import ToastContainer from "../../components/UI/ToastContainer";
 
 interface ToastContextType {
   showSuccess: (title: string, message?: string, duration?: number) => string;
@@ -48,7 +48,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
 export const useToastContext = (): ToastContextType => {
   const context = useContext(ToastContext);
   if (context === undefined) {
-    throw new Error('useToastContext must be used within a ToastProvider');
+    throw new Error("useToastContext must be used within a ToastProvider");
   }
   return context;
 };

@@ -1,4 +1,4 @@
-import { User } from './UsersTable';
+import type { User } from './UsersTable';
 
 export const mockUsers: User[] = [
   {
@@ -145,12 +145,12 @@ for (let i = 16; i <= 100; i++) {
   const statuses: User['status'][] = ['Active', 'Inactive', 'Pending', 'Blacklisted'];
   const firstNames = ['John', 'Jane', 'Michael', 'Sarah', 'David', 'Lisa', 'James', 'Mary', 'Robert', 'Patricia'];
   const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez'];
-  
+
   const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
   const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
   const organization = organizations[Math.floor(Math.random() * organizations.length)];
   const status = statuses[Math.floor(Math.random() * statuses.length)];
-  
+
   additionalUsers.push({
     id: i.toString(),
     organization,

@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useUser } from '../../lib/hooks/useUsers';
-import { User } from '../../lib/api/users';
-import './UserDetailsPage.scss';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useUser } from "../../lib/hooks/useUsers";
+import type { User } from "../../lib/api/users";
+import "./UserDetailsPage.scss";
 
 const UserDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { user, isLoading, error, fetchUser, blacklistUser, activateUser } = useUser();
-  const [activeTab, setActiveTab] = useState('general');
+  const { user, isLoading, error, fetchUser, blacklistUser, activateUser } =
+    useUser();
+  const [activeTab, setActiveTab] = useState("general");
 
   useEffect(() => {
     if (id) {
@@ -17,7 +18,7 @@ const UserDetailsPage: React.FC = () => {
   }, [id, fetchUser]);
 
   const handleBackToUsers = () => {
-    navigate('/dashboard');
+    navigate("/dashboard");
   };
 
   const handleBlacklistUser = async () => {
@@ -27,7 +28,7 @@ const UserDetailsPage: React.FC = () => {
         // Refresh user data
         await fetchUser(id);
       } catch (error) {
-        console.error('Failed to blacklist user:', error);
+        console.error("Failed to blacklist user:", error);
       }
     }
   };
@@ -39,33 +40,38 @@ const UserDetailsPage: React.FC = () => {
         // Refresh user data
         await fetchUser(id);
       } catch (error) {
-        console.error('Failed to activate user:', error);
+        console.error("Failed to activate user:", error);
       }
     }
   };
 
-  const getStatusClass = (status: string) => {
-    switch (status.toLowerCase()) {
-      case 'active':
-        return 'status-active';
-      case 'inactive':
-        return 'status-inactive';
-      case 'pending':
-        return 'status-pending';
-      case 'blacklisted':
-        return 'status-blacklisted';
-      default:
-        return '';
-    }
-  };
+  // Status class helper function (currently unused)
+  // const getStatusClass = (status: string) => {
+  //   switch (status.toLowerCase()) {
+  //     case "active":
+  //       return "status-active";
+  //     case "inactive":
+  //       return "status-inactive";
+  //     case "pending":
+  //       return "status-pending";
+  //     case "blacklisted":
+  //       return "status-blacklisted";
+  //     default:
+  //       return "";
+  //   }
+  // };
 
   const getUserTier = () => {
     // Simple tier calculation based on user data
-    if (user?.educationAndEmployment?.monthlyIncome?.includes('800,000') || 
-        user?.educationAndEmployment?.monthlyIncome?.includes('1,000,000')) {
+    if (
+      user?.educationAndEmployment?.monthlyIncome?.includes("800,000") ||
+      user?.educationAndEmployment?.monthlyIncome?.includes("1,000,000")
+    ) {
       return 3;
-    } else if (user?.educationAndEmployment?.monthlyIncome?.includes('400,000') || 
-               user?.educationAndEmployment?.monthlyIncome?.includes('600,000')) {
+    } else if (
+      user?.educationAndEmployment?.monthlyIncome?.includes("400,000") ||
+      user?.educationAndEmployment?.monthlyIncome?.includes("600,000")
+    ) {
       return 2;
     }
     return 1;
@@ -73,7 +79,7 @@ const UserDetailsPage: React.FC = () => {
 
   const renderStars = (tier: number) => {
     return Array.from({ length: 3 }, (_, index) => (
-      <span key={index} className={`star ${index < tier ? 'filled' : ''}`}>
+      <span key={index} className={`star ${index < tier ? "filled" : ""}`}>
         ★
       </span>
     ));
@@ -111,23 +117,29 @@ const UserDetailsPage: React.FC = () => {
       <div className="page-header">
         <button className="back-button" onClick={handleBackToUsers}>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path
+              d="M10 12L6 8L10 4"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
           Back to Users
         </button>
         <h1 className="page-title">User Details</h1>
         <div className="action-buttons">
-          <button 
+          <button
             className="btn btn-outline btn-blacklist"
             onClick={handleBlacklistUser}
-            disabled={user.status === 'Blacklisted'}
+            disabled={user.status === "Blacklisted"}
           >
             BLACKLIST USER
           </button>
-          <button 
+          <button
             className="btn btn-outline btn-activate"
             onClick={handleActivateUser}
-            disabled={user.status === 'Active'}
+            disabled={user.status === "Active"}
           >
             ACTIVATE USER
           </button>
@@ -140,24 +152,30 @@ const UserDetailsPage: React.FC = () => {
           <div className="profile-info">
             <div className="avatar">
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <circle cx="20" cy="20" r="20" fill="#213F7D"/>
-                <path d="M20 20C22.7614 20 25 17.7614 25 15C25 12.2386 22.7614 10 20 10C17.2386 10 15 12.2386 15 15C15 17.7614 17.2386 20 20 20Z" fill="white"/>
-                <path d="M20 22.5C15.8579 22.5 12.5 25.8579 12.5 30V32.5H27.5V30C27.5 25.8579 24.1421 22.5 20 22.5Z" fill="white"/>
+                <circle cx="20" cy="20" r="20" fill="#213F7D" />
+                <path
+                  d="M20 20C22.7614 20 25 17.7614 25 15C25 12.2386 22.7614 10 20 10C17.2386 10 15 12.2386 15 15C15 17.7614 17.2386 20 20 20Z"
+                  fill="white"
+                />
+                <path
+                  d="M20 22.5C15.8579 22.5 12.5 25.8579 12.5 30V32.5H27.5V30C27.5 25.8579 24.1421 22.5 20 22.5Z"
+                  fill="white"
+                />
               </svg>
             </div>
             <div className="user-basic-info">
-              <h2 className="user-name">{user.personalInfo?.fullName || user.username}</h2>
+              <h2 className="user-name">
+                {user.personalInfo?.fullName || user.username}
+              </h2>
               <p className="user-id">{user.personalInfo?.bvn || user.id}</p>
             </div>
           </div>
-          
+
           <div className="user-tier">
             <p className="tier-label">User's Tier</p>
-            <div className="stars">
-              {renderStars(userTier)}
-            </div>
+            <div className="stars">{renderStars(userTier)}</div>
           </div>
-          
+
           <div className="user-bank-info">
             <h3 className="bank-balance">₦200,000.00</h3>
             <p className="bank-details">9912345678/Providus Bank</p>
@@ -169,16 +187,16 @@ const UserDetailsPage: React.FC = () => {
       <div className="tabs-navigation">
         <div className="tabs">
           {[
-            { key: 'general', label: 'General Details' },
-            { key: 'documents', label: 'Documents' },
-            { key: 'bank', label: 'Bank Details' },
-            { key: 'loans', label: 'Loans' },
-            { key: 'savings', label: 'Savings' },
-            { key: 'app', label: 'App and System' }
-          ].map(tab => (
+            { key: "general", label: "General Details" },
+            { key: "documents", label: "Documents" },
+            { key: "bank", label: "Bank Details" },
+            { key: "loans", label: "Loans" },
+            { key: "savings", label: "Savings" },
+            { key: "app", label: "App and System" },
+          ].map((tab) => (
             <button
               key={tab.key}
-              className={`tab ${activeTab === tab.key ? 'active' : ''}`}
+              className={`tab ${activeTab === tab.key ? "active" : ""}`}
               onClick={() => setActiveTab(tab.key)}
             >
               {tab.label}
@@ -189,7 +207,7 @@ const UserDetailsPage: React.FC = () => {
 
       {/* Tab Content */}
       <div className="tab-content">
-        {activeTab === 'general' && (
+        {activeTab === "general" && (
           <div className="general-details">
             {/* Personal Information */}
             <div className="info-section">
@@ -309,7 +327,7 @@ const UserDetailsPage: React.FC = () => {
           </div>
         )}
 
-        {activeTab !== 'general' && (
+        {activeTab !== "general" && (
           <div className="placeholder-content">
             <p>Content for {activeTab} tab will be implemented here.</p>
           </div>
