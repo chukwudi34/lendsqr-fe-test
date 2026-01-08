@@ -123,7 +123,7 @@ const DashboardCharts: React.FC = () => {
               <Tooltip 
                 cursor={{ fill: "rgba(33, 63, 125, 0.05)" }}
                 contentStyle={{ border: "none", boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)" }}
-                formatter={(value: number) => [formatTooltip(value), "Amount"]}
+                formatter={(value: number | undefined) => value !== undefined ? [formatTooltip(value), "Amount"] : ["", ""]}
               />
               <Bar dataKey="amt" fill="#39CDCC" barSize={30} radius={[4, 4, 0, 0]} />
             </BarChart>
@@ -172,7 +172,7 @@ const DashboardCharts: React.FC = () => {
               </YAxis>
               <Tooltip 
                 contentStyle={{ border: "none", boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)" }}
-                formatter={(value: number) => [formatTooltip(value), "Interest"]}
+                formatter={(value: number | undefined) => value !== undefined ? [formatTooltip(value), "Interest"] : ["", ""]}
               />
               <Area 
                 type="monotone" 
