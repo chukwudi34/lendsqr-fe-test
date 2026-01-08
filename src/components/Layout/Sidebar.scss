@@ -109,6 +109,10 @@
           color: $primary-blue;
         }
 
+        &:focus {
+          outline: none;
+        }
+
         &.active {
           background: rgba(57, 205, 204, 0.06);
           color: $primary-blue;

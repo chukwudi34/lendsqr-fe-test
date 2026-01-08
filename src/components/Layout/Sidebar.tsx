@@ -43,10 +43,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             </svg>
           ),
           label: "Users",
-          path: "/dashboard",
-          active:
-            location.pathname === "/dashboard" ||
-            location.pathname.startsWith("/users"),
+          path: "/users",
+          active: location.pathname.startsWith("/users"),
         },
         {
           icon: (

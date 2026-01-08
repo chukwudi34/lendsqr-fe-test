@@ -6,6 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import DashboardLayout from "./components/Layout/DashboardLayout";
+import DashboardPage from "./components/Dashboard/DashboardPage";
 import UsersPage from "./components/Users/UsersPage";
 import UserDetailsPage from "./components/Users/UserDetailsPage";
 import LoginPage from "./components/Auth/LoginPage";
@@ -22,6 +23,16 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route
             path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <DashboardPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users"
             element={
               <ProtectedRoute>
                 <DashboardLayout>
